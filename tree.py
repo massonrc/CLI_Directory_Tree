@@ -3,6 +3,7 @@ This module will provide the RP Tree main module
 """
 import os
 import pathlib
+from rptree.cli import main
 
 # Define connector characters for tree diagram
 PIPE = "|"
@@ -96,3 +97,6 @@ class _TreeGenerator:
         Returns: None
         """
         self._tree.append(f"{prefix}{connector}{file.name}")
+
+if __name__=="__main__":
+    main()
