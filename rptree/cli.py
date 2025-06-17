@@ -6,7 +6,7 @@ import pathlib
 import sys
 
 from . import __version__
-from rptree.rptree import DirectoryTree
+from .rptree import DirectoryTree
 
 def main():
     args = parse_cmd_line_arguments() # pack command line arguments in args
