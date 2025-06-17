@@ -18,3 +18,22 @@ def main():
 
     tree = DirectoryTree(root_dir)
     tree.generate()
+
+def parse_cmd_line_arguments():
+    parser = argparse.ArgumentParser(
+        prog = "tree",
+        description="RP Tree, a directory tree generator",
+        epilog="Thanks for using RP Tree!"
+    )
+
+    parser.version = f"RP Tree v{__version__}"
+    parser.add_argument("-v", "--version", action="version") # Add first optional argument to CLI
+    parser.add_argument(
+        "root_dir",
+        metavar="ROOT_DIR", # Hold name of argument in usage messages
+        nargs="?", # Defines number of values program can take at hand. ? denotes only one directory path at CL
+        default=".", # Default value for argument at hand, set to the current directory as def root directory
+        help="Generate a full directory tree starting at ROOT_DIR" # Msg for what the argument does
+    )
+
+    return parser.parse_args()
