@@ -12,8 +12,8 @@ PIPE_PREFIX = "|   "
 SPACE_PREFIX = "    "
 
 class DirectoryTree:
-    def __init__(self, root_dir):
-        self.generator = _TreeGenerator(root_dir)
+    def __init__(self, root_dir, dir_only = False):
+        self._generator = _TreeGenerator(root_dir, dir_only)
 
     def generate(self):
         tree = self._generator.build_tree() # holds result of calling build_tree
@@ -24,12 +24,13 @@ class DirectoryTree:
 
 
 class _TreeGenerator:
-    def __init__(self, root_dir):
+    def __init__(self, root_dir, dir_only = False):
         """
         Constructor
         :param root_dir:
         """
         self._root_dir = pathlib.Path(root_dir)
+        self._dir_only = dir_only
         self._tree = [] # Shape the directory tree diagram
 
 
@@ -55,8 +56,7 @@ class _TreeGenerator:
         :param prefix: Holds a prefix string that you use to draw the tree diagram on the terminal window
         :return: None
         """
-        entries = directory.iterdir() # Assign result to entries, returns subdirectories in directory
-        entries = sorted(entries, key = lambda entry: entry.is_file())
+        entries = self._prepare_entries(directory) # prepare directory entries to generate either full or directory only
         entries_count = len(entries) # get number of entries in directory
 
         # Loop over entries in directory, use enumerate to associate an index to each entry
