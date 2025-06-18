@@ -16,7 +16,7 @@ def main():
         print("The specified root directory does not exist.")
         sys.exit()
 
-    tree = DirectoryTree(root_dir, dir_only = args.dir_only)
+    tree = DirectoryTree(root_dir, dir_only = args.dir_only, output_file = args.output_file)
     tree.generate()
 
 def parse_cmd_line_arguments():
