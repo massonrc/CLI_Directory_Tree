@@ -46,7 +46,7 @@ def parse_cmd_line_arguments():
 
     # Add -o and --outputfile-file flags
     parser.add_argument(
-        "o",
+        "-o",
         "--output-file",
         metavar = "OUTPUT_FILE",
         nargs = "?",
