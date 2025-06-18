@@ -69,6 +69,15 @@ class _TreeGenerator:
             else:
                 self._add_file(entry, prefix, connector)
 
+    def _prepare_entries(self, directory):
+        entries = directory.iterdir()
+        if self._dir_only:
+            entries = [entry for entry in entries if entry.is_dir()]
+            return entries
+
+        entries = sorted(entries, key=lambda entry: entry.is_file())
+        return entries
+
     def _add_directory(self, directory, index, entries_count, prefix, connector):
         """
         Helper method
