@@ -44,4 +44,14 @@ def parse_cmd_line_arguments():
         help="Generate a directory-only tree"
     )
 
+    # Add -o and --outputfile-file flags
+    parser.add_argument(
+        "o",
+        "--output-file",
+        metavar = "OUTPUT_FILE",
+        nargs = "?",
+        default = sys.stdout,
+        help = " Generate a full directory tree and save it to a file"
+    )
+
     return parser.parse_args()
